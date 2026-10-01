@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Idoia de la Torre · Ingeniera Industrial</title>
+<meta name="description" content="Ingeniera Industrial con especialización en diseño y fabricación en automoción. Portfolio profesional de Idoia de la Torre.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --dusty:#B0897B; --almond:#C9B3AC; --taupe:#50433E; --platinum:#E9EAEC; --silver:#BFBDBD;
+  --ink:#2a211d; --paper:#f7f7f8;
+  --sidebar:300px;
+  --pad:clamp(20px,4vw,56px);
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:16px}
+body{font-family:var(--sans);color:var(--ink);line-height:1.6;font-size:16px;background:var(--platinum)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--taupe);outline-offset:3px}
+
+/* ---------- Layout ---------- */
+.layout{display:grid;grid-template-columns:var(--sidebar) minmax(0,1fr);min-height:100vh}
+.side{
+  position:sticky;top:0;height:100vh;overflow-y:auto;
+  background:var(--dusty);color:var(--ink);
+  display:flex;flex-direction:column;gap:28px;padding:36px 26px;
+}
+.side h2{font-size:.95rem;font-weight:700;letter-spacing:.14em;margin-bottom:12px}
+.side nav ul{list-style:none;display:flex;flex-direction:column}
+.side nav a{
+  display:block;text-decoration:none;padding:6px 0 6px 14px;font-size:.95rem;
+  border-left:2px solid rgba(42,33,29,.28);transition:padding .2s,border-color .2s;
+}
+.side nav a:hover{border-left-color:var(--ink)}
+.side nav a.active{border-left-color:var(--ink);padding-left:20px;font-weight:700}
+.contact{margin-top:auto;border-top:1px solid rgba(42,33,29,.35);padding-top:22px}
+.contact dl,.contact-mobile dl{display:grid;gap:14px}
+.contact dl>div,.contact-mobile dl>div{display:flex;align-items:flex-start;gap:12px}
+.ico{flex:none;margin-top:2px}
+.contact dt,.contact-mobile dt{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.contact dd,.contact-mobile dd{font-size:.92rem;word-break:break-word}
+.contact a,.contact-mobile a{text-decoration:none;border-bottom:1px solid rgba(42,33,29,.5)}
+.contact a:hover,.contact-mobile a:hover{border-bottom-color:var(--ink)}
+.contact-mobile{display:none}
+
+main{min-width:0}
+.content{padding:0 var(--pad)}
+section{margin-bottom:56px}
+
+/* ---------- Cabecera ---------- */
+.name{
+  padding:44px var(--pad) 18px;font-weight:700;
+  font-size:clamp(1.9rem,5.2vw,4rem);line-height:1.08;letter-spacing:.12em;color:var(--dusty);
+  overflow-wrap:anywhere;
+}
+.band{
+  background:var(--almond);color:var(--ink);width:100%;
+  padding:12px var(--pad);font-size:clamp(.95rem,1.6vw,1.15rem);font-weight:500;letter-spacing:.04em;
+}
+.about{display:grid;grid-template-columns:230px minmax(0,1fr);gap:28px;margin-top:36px;align-items:start}
+.about-text p{margin-bottom:14px}
+
+/* ---------- Títulos tipo cota de plano ---------- */
+.sec-title{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+.sec-title h2{font-size:1.35rem;font-weight:700;color:var(--taupe);letter-spacing:.02em}
+.sec-title::after{
+  content:"";flex:1;height:9px;min-width:20px;
+  background:
+    linear-gradient(var(--dusty),var(--dusty)) left center/1px 9px no-repeat,
+    linear-gradient(var(--dusty),var(--dusty)) right center/1px 9px no-repeat,
+    linear-gradient(var(--dusty),var(--dusty)) center/100% 1px no-repeat;
+}
+
+/* ---------- Recuadros ---------- */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.card,.entry{background:var(--paper);border:1px solid var(--taupe);padding:22px 24px}
+.card h3{font-size:1.05rem;font-weight:600;color:var(--taupe);margin-bottom:12px}
+.card ul{list-style:none;display:grid;gap:10px}
+.card li{padding-left:16px;position:relative}
+.card li::before{content:"";position:absolute;left:0;top:.8em;width:8px;height:1px;background:var(--dusty);box-shadow:0 0 0 .6px var(--dusty)}
+.sub{font-size:.9rem;color:#5f514b}
+
+.inline-list{display:flex!important;flex-wrap:wrap;gap:10px 32px!important}
+.langs li{padding-left:0;display:flex;justify-content:space-between;gap:12px;align-items:baseline;border-bottom:1px dashed var(--silver);padding-bottom:8px}
+.langs li::before{display:none}
+.langs li:last-child{border-bottom:0;padding-bottom:0}
+.langs .lvl{font-family:var(--mono);font-size:.8rem;text-align:right}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{font-family:var(--mono);font-size:.8rem;background:var(--platinum);border:1px solid var(--silver);padding:3px 10px}
+.chips.soft span{font-family:var(--sans);background:transparent;border-color:var(--almond)}
+.card .chips + h3{margin-top:20px}
+
+/* ---------- Línea de tiempo ---------- */
+.timeline{list-style:none;position:relative;display:grid;gap:18px;padding-left:26px}
+.timeline::before{content:"";position:absolute;left:5px;top:8px;bottom:8px;width:1px;background:var(--dusty)}
+.timeline > li{position:relative}
+.timeline > li::before{content:"";position:absolute;left:-26px;top:.55em;width:11px;height:11px;background:var(--platinum);border:2px solid var(--dusty);border-radius:50%}
+.timeline .when{font-family:var(--mono);font-size:.8rem;color:#5f514b}
+.timeline h3{font-size:1.05rem;font-weight:600;color:var(--taupe);margin:2px 0 4px}
+.timeline p{font-size:.95rem}
+.project{display:grid;gap:8px}
+.project h3{font-size:1.15rem;margin-bottom:0}
+
+footer{font-size:.85rem;color:#5f514b;border-top:1px solid var(--silver);padding:18px var(--pad) 40px;margin:0 var(--pad)}
+footer{padding-left:0;padding-right:0;margin:0 var(--pad)}
+
+/* ---------- Responsive ---------- */
+@media (max-width:1000px){
+  .about{grid-template-columns:1fr}
+}
+@media (max-width:900px){
+  .layout{grid-template-columns:minmax(0,1fr)}
+  .side{height:auto;padding:0;z-index:10;display:block}
+  .side h2,.side .contact{display:none}
+  .side nav{overflow-x:auto;scrollbar-width:none}
+  .side nav ul{flex-direction:row;padding:10px var(--pad);gap:6px;width:max-content}
+  .side nav a{border:1px solid rgba(42,33,29,.4);padding:6px 12px;white-space:nowrap;font-size:.88rem}
+  .side nav a.active{border-color:var(--ink);background:var(--ink);color:var(--paper);padding-left:12px}
+  html{scroll-padding-top:62px}
+  .contact-mobile{display:block;background:var(--dusty);padding:24px var(--pad)}
+  .contact-mobile h2{font-size:.95rem;font-weight:700;letter-spacing:.14em;margin-bottom:12px}
+  .name{padding-top:30px}
+}
+@media (max-width:700px){
+  .grid2{grid-template-columns:1fr}
+  .langs li{flex-direction:column;gap:2px}
+  .langs .lvl{text-align:left}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="layout">
+
+  <!-- ===== Columna izquierda fija: índice + contacto ===== -->
+  <aside class="side">
+    <nav aria-label="Índice">
+      <h2>Índice</h2>
+      <ul>
+        <li><a href="#sobre-mi">Sobre mí</a></li>
+        <li><a href="#permisos">Permisos</a></li>
+        <li><a href="#idiomas">Idiomas</a></li>
+        <li><a href="#conocimientos">Conocimientos y soft skills</a></li>
+        <li><a href="#educacion">Educación</a></li>
+        <li><a href="#experiencia">Experiencia laboral</a></li>
+        <li><a href="#proyectos">Proyectos destacados</a></li>
+        <li><a href="#talleres">Talleres y certificados</a></li>
+      </ul>
+    </nav>
+    <div class="contact">
+      <h2>Contacto</h2>
+      <dl>
+        <div><svg class="ico" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><dt>Ubicación</dt><dd>Sestao 48910, Vizcaya</dd></div>
+        <div><svg class="ico" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg><dt>Email</dt><dd><a href="mailto:idoiadelatorre00@gmail.com">idoiadelatorre00@gmail.com</a></dd></div>
+        <div><svg class="ico" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 10.5V16M8 7.8v.1M12 16v-5.5M12 12.8c0-1.4 1-2.3 2.3-2.3S16.5 11.4 16.5 13V16"/></svg><dt>LinkedIn</dt><dd><a href="https://linkedin.com/in/idoiadelatorre" target="_blank" rel="noopener">linkedin.com/in/idoiadelatorre</a></dd></div>
+        <div><svg class="ico" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h3.5l1.5 4-2 1.3a11 11 0 0 0 5.7 5.7l1.3-2 4 1.5V18a2 2 0 0 1-2 2A15 15 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><dt>Teléfono</dt><dd><a href="tel:+34688843858">+34 688 84 38 58</a></dd></div>
+      </dl>
+    </div>
+  </aside>
+
+  <main>
+    <!-- ===== Sobre mí ===== -->
+    <section id="sobre-mi">
+      <h1 class="name">IDOIA DE LA TORRE</h1>
+      <p class="band">Ingeniera Industrial con especialización en diseño y fabricación en automoción</p>
+      <div class="content">
+        <div class="about">
+          <div class="card">
+            <h3>Aficiones</h3>
+            <ul><li>Navegación a vela (no titulada)</li></ul>
+          </div>
+          <div class="about-text">
+            <p>Soy una ingeniera que me defino por mi capacidad resolutiva y mi interés constante por aprender y mejorar de forma continua. Busco desarrollarme en el ámbito de la ingeniería que me permita poner en práctica mis conocimientos y desarrollar mis habilidades en un entorno profesional relacionado con la mecánica.</p>
+            <p>Me considero una persona trabajadora y comprometida, con facilidad para integrarme en un equipo y contribuir de forma efectiva en el desarrollo y mejora de procesos, análisis y propuestas técnicas. Mi objetivo es seguir creciendo como profesional participando en proyectos reales en los que pueda aportar valor desde el primer día.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="content">
+      <!-- ===== Permisos ===== -->
+      <section id="permisos">
+        <div class="sec-title"><h2>Permisos</h2></div>
+        <div class="card">
+          <ul class="inline-list">
+            <li>Permiso de carretilla elevadora</li>
+            <li>Permiso de conducir y coche propio</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===== Idiomas ===== -->
+      <section id="idiomas">
+        <div class="sec-title"><h2>Idiomas</h2></div>
+        <div class="grid2">
+          <div class="card">
+            <h3>Niveles</h3>
+            <ul class="langs">
+              <li><span>Castellano</span><span class="lvl">Lengua materna</span></li>
+              <li><span>Inglés</span><span class="lvl">Advanced C1 · Certificado</span></li>
+              <li><span>Euskera</span><span class="lvl">B2 · Certificado</span></li>
+              <li><span>Francés</span><span class="lvl">Nivel básico (4 años en la ESO)</span></li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Actividades relacionadas con inglés</h3>
+            <ul>
+              <li><b>2015</b> · Estancia de 15 días con una familia irlandesa.</li>
+              <li><b>2014–2015</b> · Intercambio lingüístico con una neerlandesa.</li>
+              <li><b>2023–2024</b> · Erasmus en Holanda, Flexible Energy Technology en <a href="https://www.hanze.nl" target="_blank" rel="noopener">Hanze University</a>. Desarrollé mi capacidad de trabajo en equipo y mejoré mi comunicación con personas de distintas culturas. Además trabajé en un proyecto con la empresa Eekels.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== Conocimientos ===== -->
+      <section id="conocimientos">
+        <div class="sec-title"><h2>Conocimientos y soft skills</h2></div>
+        <div class="card">
+          <h3>Técnicos</h3>
+          <div class="chips">
+            <span>Windows</span><span>Microsoft Office</span><span>Matlab</span><span>Ansys</span><span>Simulink</span><span>CAD/CAM</span><span>CYPE</span><span>Siemens NX</span><span>MAGMA</span>
+          </div>
+          <h3>Soft skills</h3>
+          <div class="chips soft">
+            <span>Pensamiento crítico</span><span>Creatividad</span><span>Adaptabilidad</span><span>Comunicación efectiva</span><span>Atención al detalle</span><span>Gestión del tiempo</span><span>Aprendizaje rápido</span><span>Liderazgo</span><span>Iniciativa</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== Educación ===== -->
+      <section id="educacion">
+        <div class="sec-title"><h2>Educación</h2></div>
+        <ol class="timeline">
+          <li>
+            <span class="when">2025 – 2026</span>
+            <h3>Máster Universitario en Diseño y Fabricación en Automoción</h3>
+            <p class="sub">Universidad de Deusto, Bilbao</p>
+            <p>En simultaneidad con el Máster Industrial, mediante Formación Dual, combinando formación académica y experiencia práctica remunerada en empresa.</p>
+          </li>
+          <li>
+            <span class="when">2024 – 2026</span>
+            <h3>Máster Universitario en Ingeniería Industrial</h3>
+            <p class="sub">Universidad de Deusto, Bilbao</p>
+          </li>
+          <li>
+            <span class="when">2019 – 2024</span>
+            <h3>Grado en Ingeniería en Tecnologías Industriales</h3>
+            <p class="sub">Universidad de Deusto, Bilbao</p>
+            <p>Proyecto de Fin de Grado realizado en el Laboratorio de Sistemas de Fabricación de la Universidad (proceso de fresado para la aplicación de soldadura por fricción).</p>
+          </li>
+        </ol>
+      </section>
+
+      <!-- ===== Experiencia laboral ===== -->
+      <section id="experiencia">
+        <div class="sec-title"><h2>Experiencia laboral</h2></div>
+        <ol class="timeline">
+          <li>
+            <span class="when">Marzo 2026 – agosto 2026</span>
+            <h3>Ingeniera de procesos · Betsaide SAL.</h3>
+            <p>Desarrollo de Proyectos de Fin de Máster.</p>
+          </li>
+        </ol>
+      </section>
+
+      <!-- ===== Proyectos destacados ===== -->
+      <section id="proyectos">
+        <div class="sec-title"><h2>Proyectos destacados</h2></div>
+        <article class="card project">
+          <h3>Inspección End-of-Line mediante Inteligencia Artificial</h3>
+          <p>Desarrollo de un sistema basado en IA para la automatización de procesos de inspección End-of-Line. Proyecto presentado en el 30.º Congreso de Calidad en la Automoción.</p>
+        </article>
+      </section>
+
+      <!-- ===== Talleres y certificados ===== -->
+      <section id="talleres">
+        <div class="sec-title"><h2>Talleres y certificados</h2></div>
+        <div class="grid2">
+          <div class="card">
+            <h3>Universidad de Deusto</h3>
+            <ul>
+              <li>Gestión del tiempo</li>
+              <li>Trabajo en equipo y gestión de conflictos</li>
+              <li>Elaboración de trabajos académicos</li>
+              <li>Habilidades sociales</li>
+              <li>Estrategias para la motivación y manejo de la ansiedad y del estrés</li>
+              <li>Certificación de Edge Computing</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Otros</h3>
+            <ul>
+              <li>Inglés · Advanced C1 (certificado)</li>
+              <li>Euskera · B2 (certificado)</li>
+              <li>Permiso de carretilla elevadora</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer>© <span id="year">2026</span> Idoia de la Torre</footer>
+  </main>
+
+  <!-- Contacto en móvil (la columna fija pasa a barra superior) -->
+  <div class="contact-mobile">
+    <h2>Contacto</h2>
+    <dl>
+      <div><svg class="ico" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><dt>Ubicación</dt><dd>Sestao 48910, Vizcaya</dd></div>
+      <div><svg class="ico" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg><dt>Email</dt><dd><a href="mailto:idoiadelatorre00@gmail.com">idoiadelatorre00@gmail.com</a></dd></div>
+      <div><svg class="ico" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 10.5V16M8 7.8v.1M12 16v-5.5M12 12.8c0-1.4 1-2.3 2.3-2.3S16.5 11.4 16.5 13V16"/></svg><dt>LinkedIn</dt><dd><a href="https://linkedin.com/in/idoiadelatorre" target="_blank" rel="noopener">linkedin.com/in/idoiadelatorre</a></dd></div>
+      <div><svg class="ico" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h3.5l1.5 4-2 1.3a11 11 0 0 0 5.7 5.7l1.3-2 4 1.5V18a2 2 0 0 1-2 2A15 15 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><dt>Teléfono</dt><dd><a href="tel:+34688843858">+34 688 84 38 58</a></dd></div>
+    </dl>
+  </div>
+</div>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Resalta en el índice la sección visible
+  const links = [...document.querySelectorAll('.side nav a')];
+  const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+  const setActive = id => links.forEach(a => {
+    const on = a === map.get(id);
+    a.classList.toggle('active', on);
+    if (on) { a.setAttribute('aria-current', 'true'); a.scrollIntoView({inline:'nearest', block:'nearest'}); }
+    else a.removeAttribute('aria-current');
+  });
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); });
+  }, { rootMargin: '-20% 0px -65% 0px' });
+  map.forEach((_, id) => { const el = document.getElementById(id); if (el) io.observe(el); });
+  setActive('sobre-mi');
+</script>
+</body>
+</html>
